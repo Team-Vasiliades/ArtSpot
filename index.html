@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Art Club</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- sections -->
+  <!-- Home Section -->
+  <section id="home">
+    <div class="glass content">
+      <h1>The Art Club</h1>
+      <p>Welcome to Art Club, a space where creativity thrives! Showcase your art, connect with fellow creators, and share your passion with the world. Whether it’s painting, pottery, or craftwork, let your talent shine here.</p>
+      <a href="#gallery" class="cta">Explore Community</a>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <div class="glass content">
+      <h1>Features</h1>
+      <p>Explore a curated collection of art and craft from around the world, showcasing creativity and passion.</p>
+      <div class="features">
+        <div class="feature-card">
+          <h3>Feature 1: ShowCase Your Art</h3>
+          <p>Share your beautiful art with a community that understands and appreciates it.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Feature 2: Spotlight</h3>
+          <p>share your journey of creating your art pieace.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Feature 3: Community Discussions</h3>
+          <p>Join engaging discussions with fellow art enthusiasts and exchange ideas and techniques.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Feature 4: Workshops & Tutorials</h3>
+          <p>Attend exclusive workshops and watch tutorials to hone your artistic skills.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Feature 5: Custom Art Marketplace</h3>
+          <p>Get Custom-made art --- Or sell your unique artwork and craft pieces through our secure marketplace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="glass content">
+      <h1>About Us</h1>
+      <p>The Art Club is a community-driven platform for artists and craft lovers. We aim to provide a space to create, share, and grow together.</p>
+      <a href="#contact" class="cta">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="glass content">
+      <h1>Contact</h1>
+      <p>Have any questions or suggestions? Reach out to us, and let's connect!</p>
+      <a href="mailto:info@artclub.com" class="cta">Email Us</a>
+    </div>
+  </section>
+</body>
+</html>
+
+ <!-- Navbar -->
+ <div class="navbar" id="navbar">
+  <div class="logo">
+    <a href="#home">The Art Club</a>
+  </div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- JavaScript -->
+<script>
+  const navbar = document.getElementById("navbar");
+
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+
+    // Check if scrolled into the upper half of the page
+    if (scrollY < windowHeight / 4) {
+      navbar.style.top = "0"; // Show the navbar
+    } else {
+      navbar.style.top = "-80px"; // Hide the navbar
+    }
+  });
+</script>
+</body>
+</html>
