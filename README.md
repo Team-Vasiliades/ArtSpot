@@ -1,70 +1,124 @@
 
+from pathlib import Path
 
-  const paragraphText = "Welcome to Art Spot! A space where creativity thrives! Showcase your art, connect with fellow creators, and share your passion with the world.";
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-  const paragraph = document.getElementById("paragraph");
-  let index = 0;
-  
-  function typeText() {
-    if (index < paragraphText.length) {
-      paragraph.textContent += paragraphText.charAt(index);
-      index++;
-      setTimeout(typeText, 50); // Adjust typing speed here (lower = faster)
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-#i3_k17qlg%yr3o18!$)x8t=ejjm6eirhf+h-jxu+315_!m_h6'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+
+
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'Base.apps.BaseConfig',
+    'pearstech_hackathron_Copy',
+
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'pearstech_hackathron_Copy.urls'
+
+import os
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], 
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = 'pearstech_hackathron_Copy.wsgi.application'
+
+
+# Database
+# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-  }
-    let currentSectionIndex = 0;
-    const sections = document.querySelectorAll('section');
-    let isScrolling = false; // Prevent multiple triggers
+}
 
-    function scrollToSection(index) {
-      if (index >= 0 && index < sections.length) {
-        isScrolling = true;
-        sections[index].scrollIntoView({ behavior: 'smooth' });
 
-        setTimeout(() => {
-          isScrolling = false; // Allow scrolling again after animation completes
-        }, 800); // Adjust timing to match smooth scrolling duration
-      }
-    }
+# Password validation
+# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
-    window.addEventListener('wheel', (event) => {
-      if (isScrolling) return; // Prevents multiple scroll triggers
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 
-      if (event.deltaY > 0) {
-        // Scroll Down
-        if (currentSectionIndex < sections.length - 1) {
-          currentSectionIndex++;
-          scrollToSection(currentSectionIndex);
-        }
-      } else if (event.deltaY < 0) {
-        // Scroll Up
-        if (currentSectionIndex > 0) {
-          currentSectionIndex--;
-          scrollToSection(currentSectionIndex);
-        }
-      }
-    });
 
-  //NAVBARFINALLYYY
-document.addEventListener("DOMContentLoaded", function () {
-  const navbar = document.getElementById("hidden-navbar");
+# Internationalization
+# https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-  document.addEventListener("mousemove", function (event) {
-    if (event.clientY <= 60) {
-      navbar.style.top = "0"; // Show navbar
-    } else if (event.clientY > 100) {
-      navbar.style.top = "-60px"; // Hide navbar
-    }
-  });
-});
+LANGUAGE_CODE = 'en-us'
 
-document.querySelector(".magnetic-btn").addEventListener("mousemove", function(e) {
-  const rect = this.getBoundingClientRect();
-  const x = e.clientX - rect.left - rect.width / 2;
-  const y = e.clientY - rect.top - rect.height / 2;
-  this.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-});
+TIME_ZONE = 'UTC'
 
-document.querySelector(".magnetic-btn").addEventListener("mouseleave", function() {
-  this.style.transform = "translate(0, 0)";
-});
+USE_I18N = True
+
+USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, r"C:\Users\HP\Desktop\pearstech_hackathron_Copy\pearstech_hackathron_Copy\static")]
+
+TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
