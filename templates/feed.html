@@ -106,31 +106,37 @@
             let button = $(this);
             let postID = button.data("post-id");
             let action = button.hasClass("like-btn") ? "like" : "dislike";
-            let csrfToken = getCSRFToken();  // Fetch CSRF Token
-    
+            let csrfToken = $("input[name=csrfmiddlewaretoken]").val(); // Get CSRF token
+        
             console.log(`🚀 ${action.toUpperCase()} clicked for post:`, postID);
-    
+        
             $.ajax({
                 type: "POST",
-                url: `/users/${action}/${postID}/`,
+                url: `/like_dislike/${postID}/${action}/`,  // ✅ Ensure this matches urls.py
                 headers: { "X-CSRFToken": csrfToken },
                 success: function (response) {
                     console.log("✅ Response received:", response);
-    
+        
                     if (response.success) {
-                        // Update Like/Dislike Counts Dynamically
+                        // ✅ Update Like/Dislike Counts
                         $(`#like-count-${postID}`).text(response.likes);
                         $(`#dislike-count-${postID}`).text(response.dislikes);
                     } else {
+                        // ❌ Show error only if response indicates failure
                         alert("❌ Error: " + (response.error || "Something went wrong."));
                     }
                 },
                 error: function (xhr) {
                     console.log("❌ AJAX Error:", xhr.responseText);
-                    alert("❌ Failed to update reaction.");
+        
+                    // ✅ Only show alert if the request truly fails
+                    if (xhr.status !== 200) {
+                        alert("❌ Failed to update reaction.");
+                    }
                 }
             });
         });
+        
     
         // ✅ Toggle Comments Section (Event Delegation)
         $(document).on("click", ".toggle-comments", function () {
@@ -155,7 +161,7 @@
         
             $.ajax({
                 type: "POST",
-                url: `/users/add_comment/${postID}/`,
+                url: `/add_comment/${postID}/`,
                 headers: { "X-CSRFToken": csrfToken },
                 contentType: "application/json",
                 data: JSON.stringify({ text: commentText }),
