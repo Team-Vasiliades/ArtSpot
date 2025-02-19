@@ -43,6 +43,11 @@ def landing(request):
 @login_required
 def feed(request):
     posts = Post.objects.all().order_by('-created_at')
+    for post in posts:
+        post.likes_count = LikeDislike.objects.filter(post=post, like=True).count()
+        post.dislikes_count = LikeDislike.objects.filter(post=post, dislike=True).count()
+
+    return render(request, 'feed.html', {'posts': posts})
 
     if request.method == 'POST':
         # Handling new post creation
@@ -58,6 +63,7 @@ def feed(request):
                     return render(request, 'single_post.html', {'post': post})
 
                 return redirect("feed")
+            
 
         # Handling new comment submission (AJAX)
         elif 'text' in request.POST and 'post_id' in request.POST:

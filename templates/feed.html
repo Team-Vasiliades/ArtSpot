@@ -54,8 +54,8 @@
                         {% endif %}
 
                         <!-- Like & Dislike Buttons -->
-                        <button class="like-btn" data-post-id="{{ post.id }}">👍 Like (<span id="like-count-{{ post.id }}">{{ post.like_count }}</span>)</button>
-                        <button class="dislike-btn" data-post-id="{{ post.id }}">👎 Dislike (<span id="dislike-count-{{ post.id }}">{{ post.dislike_count}}</span>)</button>
+                        <button class="like-btn" data-post-id="{{ post.id }}">👍 Like (<span id="like-count-{{ post.id }}">{{ post.likes_count }}</span>)</button>
+                        <button class="dislike-btn" data-post-id="{{ post.id }}">👎 Dislike (<span id="dislike-count-{{ post.id }}">{{ post.dislikes_count}}</span>)</button>
 
                         <!-- Comment Button -->
                         <button class="toggle-comments" data-post-id="{{ post.id }}">💬 View Comments (<span id="comment-count-{{ post.id }}">{{ post.comments.count }}</span>)</button>
