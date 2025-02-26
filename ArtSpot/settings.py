@@ -128,16 +128,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Ensure this is set!
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),  # Optional if you store static files in "static"
 ]
 
-# Serve static files in production
 if os.getenv("VERCEL"):
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 
 # Default primary key field type
