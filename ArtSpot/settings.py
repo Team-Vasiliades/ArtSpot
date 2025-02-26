@@ -83,13 +83,17 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-else:
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Ensure static files are collected here
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+# Use whitenoise for serving static files in production
+if os.getenv("VERCEL"):
+    INSTALLED_APPS.append("whitenoise.runserver_nostatic")
+    MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
