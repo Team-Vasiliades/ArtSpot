@@ -12,6 +12,9 @@ import json
 def index(request):
     return render(request, 'index.html')  # This loads your HTML file
 
+def aboutus(request):
+    return render(request, 'about.html')
+
 # User Registration View
 def register(request):
     if request.method == 'POST':
@@ -78,6 +81,9 @@ def feed(request):
         form = PostForm()
 
     return render(request, 'feed.html', {'form': form, 'posts': posts})
+
+def join_chat_room(request, topic):
+    return render(request, '~/ArtSpot/pears_chat/chat.html', {'topic': topic})
 
 @login_required
 def post_detail_view(request, post_id):

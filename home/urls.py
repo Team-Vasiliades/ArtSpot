@@ -7,11 +7,13 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name = 'home'),
+    path('aboutus/', views.aboutus, name = 'aboutus'),
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('', views.landing, name='landing'),  # Redirect after login
     path('feed/', views.feed, name='feed'),
+    path('chat/<str:topic>/', views.join_chat_room, name='join_chat_room'),
     path("add_comment/<int:post_id>/", views.add_comment, name="add_comment"),
     path('dislike/<int:post_id>/', views.like_dislike_post, {'action': 'dislike'}, name='dislike_post'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
