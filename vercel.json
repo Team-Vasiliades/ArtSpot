@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "ArtSpot/wsgi.py",
@@ -11,6 +12,10 @@
     }
   ],
   "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
     {
       "src": "/(.*)",
       "dest": "ArtSpot/wsgi.py"

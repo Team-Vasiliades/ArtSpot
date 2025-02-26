@@ -134,6 +134,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),  # Optional if you store static files in "static"
 ]
 
+# Serve static files in production
+if os.getenv("VERCEL"):
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
