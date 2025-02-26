@@ -1,13 +1,24 @@
 {
-  "builds": [{
-    "src": "ArtSpot/wsgi.py",
-    "use": "@vercel/python",
-    "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
-  }],
+  "builds": [
+    {
+      "src": "ArtSpot/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.12",
+        "installCommand": "apt-get update && apt-get install -y libmariadb-dev"
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "ArtSpot/wsgi.py"
     }
-  ]
+  ],
+  "env": {
+    "LD_LIBRARY_PATH": "/usr/lib/x86_64-linux-gnu/",
+    "LIBRARY_PATH": "/usr/lib/x86_64-linux-gnu/",
+    "PKG_CONFIG_PATH": "/usr/lib/x86_64-linux-gnu/pkgconfig/"
+  }
 }
