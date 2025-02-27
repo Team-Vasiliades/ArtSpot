@@ -13,7 +13,7 @@
     {
       "src": "static/style.css",
       "use": "@vercel/static"
-    }
+    },
     {
       "src": "static/about_style.css",
       "use": "@vercel/static"
