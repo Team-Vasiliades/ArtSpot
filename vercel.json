@@ -14,6 +14,10 @@
       "src": "static/style.css",
       "use": "@vercel/static"
     }
+    {
+      "src": "static/about_style.css",
+      "use": "@vercel/static"
+    }
   ],
   "routes": [
     { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
